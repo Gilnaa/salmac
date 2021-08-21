@@ -1,2 +1,4 @@
 # salmac
-My adafruit macropad firmware
+adafruit macropad firmware
+
+Compile using arduino
