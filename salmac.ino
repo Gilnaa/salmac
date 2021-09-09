@@ -259,6 +259,9 @@ void setup()
     usb_hid.begin();
 }
 
+
+bool last_was_vol = false;
+
 void loop() {
     display.clearDisplay();
 
@@ -281,6 +284,12 @@ void loop() {
         {
             usb_hid.sendReport16(RID_CONSUMER_CONTROL, HID_USAGE_CONSUMER_VOLUME_INCREMENT);
         }
+        last_was_vol = true;
+    }
+    else if (last_was_vol)
+    {
+        last_was_vol = false;
+        usb_hid.sendReport16(RID_CONSUMER_CONTROL, 0);
     }
 
     // Scanning takes a while so we don't do it all the time
